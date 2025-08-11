@@ -5,13 +5,7 @@ import { hashSync as bcryptHashSync } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-    private readonly users: UserDTO[] = [
-        {
-            id: '1',
-            username: 'user',
-            password: '12345678'
-        }
-    ]
+    private readonly users: UserDTO[] = []
 
     create(newUser: UserDTO) {
         newUser.id = uuid();
@@ -21,5 +15,9 @@ export class UsersService {
 
     findAllCustom() {
         return this.users
+    }
+
+    findByUserName(username: string): UserDTO | null {
+        return this.users.find(user => user.username = username)!;
     }
 }
